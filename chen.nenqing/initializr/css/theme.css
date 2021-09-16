@@ -1,0 +1,18 @@
+nav li:nth-child(2) a {
+	background: blue;
+}
+
+.main {
+	display: flex;
+	gap: 20px;
+}
+
+.main aside {
+	float:  none;
+	order:  1;
+}
+
+.main article {
+	float:  none;
+	order:  2;
+}
