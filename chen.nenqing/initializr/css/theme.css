@@ -1,6 +1,74 @@
-nav li:nth-child(2) a {
-	background: blue;
+/* header*/
+
+* {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
 }
+
+.header-container
+.wrapper.clearfix {
+	border-radius: 0 0 50px 50px;
+}
+
+
+nav {
+	width: 80%;
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-end;
+	height: 160px;
+}
+
+nav ul {
+    margin: 10%;
+    text-align: center;
+}
+
+nav li a {
+	background: #120D31;
+	position: relative;
+
+	width: 120px;
+    height: 55px;
+    line-height: 10px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #fff;
+    cursor: pointer;
+    margin: 20px;
+    text-align:center;
+    border: none;
+    background-size: 300% 100%;
+    white-space: no-wrap;
+
+    border-radius: 50px;
+    moz-transition: all .4s ease-in-out;
+    -o-transition: all .4s ease-in-out;
+    -webkit-transition: all .4s ease-in-out;
+    transition: all .4s ease-in-out;
+
+    background-image: linear-gradient(to right, #F0D3F7, #b98ea7, #302f4d, #120d31, #230d31);
+    box-shadow: 0 4px 15px 0 rgba(116, 79, 168, 0.75);
+}
+
+nav li a:hover {
+    background-position: 100% 0;
+    moz-transition: all .4s ease-in-out;
+    -o-transition: all .4s ease-in-out;
+    -webkit-transition: all .4s ease-in-out;
+    transition: all .4s ease-in-out;
+}
+
+nav li a:focus {
+    outline: none;
+}
+
+/* Body */
+.main-container {
+	background-color: #f0d3f7 ;
+}
+
 
 .main {
 	display: flex;
@@ -10,9 +78,137 @@ nav li:nth-child(2) a {
 .main aside {
 	float:  none;
 	order:  1;
+	border-radius: 25px;
 }
 
 .main article {
 	float:  none;
 	order:  2;
+}
+
+body {
+    font-family: 'Exo', sans-serif; 
+}
+
+.wrapper {
+    width: 90%;
+    margin: 0 5%;
+}
+
+/* ===================
+    ALL: Orange Theme
+   =================== */
+
+.header-container {
+    border-bottom: 20px solid #f0d3f7;
+}
+
+.footer-container,
+.main aside {
+    border-top: 20px solid #f0d3f7;
+}
+
+.header-container,
+.footer-container,
+.main aside {
+    background: #302f4d;
+}
+
+.title {
+    color: #f0d3f7;
+    font-size: 4 em;
+}
+
+/* ==============
+    MOBILE: Menu
+   ============== */
+
+nav ul {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+/* ==============
+    MOBILE: Main
+   ============== */
+
+.main {
+    padding: 30px 0;
+}
+
+.main article {
+	margin: 20px;
+}
+
+.main article h1 {
+    font-size: 1.5em;
+    color: #120d31;
+}
+
+.main aside {
+    color: #f0d3f7;
+    padding: 0px 5% 10px;
+}
+
+
+.footer-container footer {
+    color: #f0d3f7;
+    padding: 20px 0;
+}
+
+/* ===============
+    ALL: IE Fixes
+   =============== */
+
+.ie7 .title {
+    padding-top: 20px;
+}
+
+
+/* ==========================================================================
+   Media Queries
+   ========================================================================== */
+
+@media only screen and (min-width: 480px) {
+
+/* ====================
+    INTERMEDIATE: Menu
+   ==================== */
+
+    nav a {
+        float: left;
+        width: 27%;
+        margin: 0 1.7%;
+        padding: 25px 2%;
+        margin-bottom: 0;
+    }
+
+    nav li:first-child a {
+        margin-left: 0;
+    }
+
+    nav li:last-child a {
+        margin-right: 0;
+    }
+
+/* ========================
+    INTERMEDIATE: IE Fixes
+   ======================== */
+
+    nav ul li {
+        display: inline;
+    }
+
+    .oldie nav a {
+        margin: 0 0.7%;
+    }
+}
+
+
+
+/* Footer */
+
+.footer-container {
+	background: #302f4d;
 }
