@@ -1,0 +1,89 @@
+:root {
+	--color-neutral-light:  #777;
+	--color-neutral-medium:  #999;
+	--color-neutral-dark:  #444;
+
+	--color-main-light:  #daffef;
+	--color-main-medium:  #64b6ac;
+	--color-main-dark:  #5d737e;
+
+
+}
+
+* {box-sizing: border-box;
+}
+
+.accordian dt {
+	display: block;
+	background-color: #64b6ac;
+	letter-spacing: 0.3em;
+	padding: 1em;
+	margin-bottom: 2em;
+}
+
+.accordian dd {
+	letter-spacing: 0.1em;
+	padding: 1em;
+	margin:  o;
+	border: 2px solid #64b6ac;
+	padding-right: 1em;
+	display: none;
+}
+
+.accordian dt~dt {
+	margin-top: 1em;
+}
+
+.tabgroup {
+
+}
+
+.tabgroup.tabs {
+	display: flex;
+}
+
+.tabgroup.tab {
+	padding: 0.5em 1em;
+	position: relative;
+}
+
+.tabgroup.tab:hover {
+	background-color: var(--color-neutral-light);
+	cursor: pointer;
+}
+
+.tabgroup .tab: :after {
+	content:  '';
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	height: 0;
+	background-color: var(--color-main-medium);
+	transition: all 0.3s;
+
+}
+
+.tabgroup . tab.active::after {
+	height: 3px;
+}
+
+.tabgroup .contents {
+	height: 40vh;
+	position: relative;
+	overflow: hidden;
+}
+
+.tabgroup . content {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	padding: 10px;
+	overflow: auto;
+	background-color: white;
+	pointer-events: none;
+	opacity: 0;
+	transition: all 0.3s;
+}
