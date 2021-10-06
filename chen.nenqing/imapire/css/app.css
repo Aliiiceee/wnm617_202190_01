@@ -1,0 +1,133 @@
+:root {
+    --color-neutral-light: #ddd;
+    --color-neutral-medium: #999;
+    --color-neutral-dark: #444;
+
+    --color-main-light: #def2f9;
+    --color-main-medium: #40a3c4;
+    --color-main-dark: #0f4557;
+
+    --color-white: #fff;
+
+    --header-height:  3rem;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+
+
+/* CORE ELEMENTS */
+a {
+   color: inherit;
+   text-decoration: none;
+   font-weight: bold;
+}
+
+
+
+
+/* LAYOUT CLASSES */
+.hidden { display:none; }
+
+.display-flex { display:flex; }
+.display-inline-flex { display:inline-flex; }
+.display-block { display:block; }
+.display-inline-block { display:inline-block; }
+
+.flex-stretch { flex: 1 1 auto; }
+.flex-none { flex: none; }
+
+.flex-align-center { align-items:center; }
+.flex-justify-center { justify-content:center; }
+.flex-vertical { flex-direction:column; }
+
+
+
+/* PAGE ELEMENTS */
+.ui-mobile .ui-page-active {
+   display: flex;
+   flex-direction: column;
+}
+
+[data-role="main"] {
+   flex: 1 1 100%;
+}
+[data-role="header"],
+[data-role="footer"] {
+   flex: none;
+   height: var(--header-height);
+   line-height: var(--header-height);
+   border-width: 0;
+   background-color: var(--color-white);
+   box-shadow: 0 0 5px rgba(0,0,0,0.2);
+   position: relative;
+   overflow: hidden;
+}
+
+
+[data-role="header"] ul,
+[data-role="footer"] ul {
+   display: flex;
+   list-style-type: none;
+   margin: 0;
+   padding: 0;
+   position: relative;
+}
+[data-role="footer"] li {
+   flex: 1 1 auto;
+   text-align: center;
+}
+[data-role="header"] a,
+[data-role="footer"] a {
+   display: block;
+}
+[data-role="header"] a {
+   padding: 0 1em;
+}
+
+.ui-header .ui-title {
+   position: absolute;
+   top: 0;
+   left: 0;
+   width: 100%;
+   height: 100%;
+   text-align: center;
+   margin: 0;
+   font-size: 1rem;
+   padding: 0;
+}
+
+
+
+/* FORM ELEMENTS */
+.form {}
+.form-control {
+   margin: 1em 0;
+}
+.form-input {
+    width: 100%;
+    display: inline-block;
+    border: 1px solid var(--color-neutral-medium);
+    margin: 0;
+    padding: 0.5em 1em;
+    border-radius: 0.3em;
+    outline: 0;
+    font: inherit;
+}
+.form-button {
+    width: 100%;
+    display: inline-block;
+    border-width: 0;
+    background-color: var(--color-neutral-light);
+    margin: 0;
+    padding: 0.5em 1em;
+    border-radius: 0.3em;
+    outline: 0;
+    font: inherit;
+    text-align: center;
+    cursor: pointer;
+    text-decoration: none;
+}
+.form-label {}
