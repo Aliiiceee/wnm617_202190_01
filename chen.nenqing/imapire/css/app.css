@@ -1,11 +1,11 @@
 :root {
-    --color-neutral-light: #ddd;
-    --color-neutral-medium: #999;
-    --color-neutral-dark: #444;
+    --color-neutral-light: #F1EDE8;
+    --color-neutral-medium: #7C7A79;
+    --color-neutral-dark: #373435;
 
-    --color-main-light: #def2f9;
+    --color-main-light: #9FC0F5;
     --color-main-medium: #40a3c4;
-    --color-main-dark: #0f4557;
+    --color-main-dark: #1C6AE4;
 
     --color-white: #fff;
 
