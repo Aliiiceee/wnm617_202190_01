@@ -8,7 +8,7 @@
 
 - http://aliiiceee.com/aau/wnm617/chen.nenqing/imapire/jquery.html
 
-- http://aliiiceee.com/aau/wnm617/chen.nenqing/imapire/jquerymobile.html
+- Project http://aliiiceee.com/aau/wnm617/chen.nenqing/imapire/index.html
 
 ## Some notes
 
