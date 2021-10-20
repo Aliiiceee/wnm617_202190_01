@@ -3,7 +3,7 @@
 <head>
    <meta charset="UTF-8">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>Animal Tracker</title>
+   <title>Inspiration Tracker</title>
 
    <!-- <base href="/aau/wnm617/chen.nenqing/imapire"> -->
 
@@ -13,13 +13,23 @@
    <script src="lib/js/jquery-2.2.4.min.js"></script>
 
    <script src="js/app.js"></script>
+   <script src="js/signin.js"></script>
 
    <script src="lib/js/jquery.mobile-1.4.5.min.js"></script>
+
+   <style>
+   @import url('https://fonts.googleapis.com/css2?family=Assistant:wght@400;700&display=swap');
+   </style>
 </head>
+
 <body>
 
    <section data-role="page" id="page-signin">
       <div data-role="main" class="display-flex flex-vertical">
+         <div class="welcome">
+            <img class="logo" src="images/logo-large.png">
+            <h3>Welcome to <br/>Imapire</h3>
+         </div>
          <div class="flex-stretch"></div>
          <form data-ajax="false" class="form" id="signin-form" style="padding:10px">
             <div class="form-control">
@@ -29,72 +39,156 @@
                <input class="form-input" type="password" id="signin-password" data-role="none" placeholder="Password">
             </div>
             <div class="form-control">
-               <a href="#page-recent" class="form-button">Sign In</a>
+               <input type="submit" value="Sign In" class="form-button">
+            </div>
+            <div class="form-control small centered">
+               Need a new account? <a href="#page-signup">Sign Up</a>
             </div>
          </form>
       </div>
    </section>
 
+   <section data-role="page" id="page-signup">
+      <div data-role="main" class="display-flex flex-vertical">
+         <div class="flex-stretch"></div>
+         <form data-ajax="false" class="form" id="signup-form" style="padding:10px">
+            <div class="form-control">
+               <label for="signup-email" class="form-label">Email Address</label>
+               <input class="form-input" type="text" id="signup-email" data-role="none" placeholder="Email">
+            </div>
+            <div class="form-control">
+               <label for="signup-password" class="form-label">New Password</label>
+               <input class="form-input" type="password" id="signup-password" data-role="none" placeholder="Password">
+            </div>
+            <div class="form-control">
+               <label for="signup-password2" class="form-label">Confirm Password</label>
+               <input class="form-input" type="password" id="signup-password2" data-role="none" placeholder="Confirm">
+            </div>
+            <div class="form-control">
+               <input type="submit" value="Sign Up" class="form-button">
+            </div>
+            <div class="form-control small centered">
+               Already have an account? <a href="#page-signin">Sign In</a>
+            </div>
+         </form>
+         <div class="flex-stretch"></div>
+      </div>
+   </section>
+
    <section data-role="page" id="page-recent">
       <div data-role="main">
-         MAP!
+         <div class="map">
+            <div class="google-map">
+               <div class="top-bar">
+               <a href="#page-signin"> 
+                  <img class="logo" src="images/logo.png" style=>
+               </a>
+            </div>
+            </div>
+         </div>
       </div>
       <footer data-role="footer">
          <ul>
-            <li><a href="#page-recent">Recent</a></li>
-            <li><a href="#page-list">List</a></li>
-            <li><a href="#page-user-profile">Profile</a></li>
+            <li><a href="#page-recent"><img class="home-icon" src="images/home-icon.png"></a></li>
+            <li><a href="#page-user-profile"><img class="profile-icon" src="images/profile-icon.png"></a></li>
+         </ul>
+      </footer>
+   </section>
+
+   <section data-role="page" id="page-user-profile">
+      <div data-role="main" class="overscroll">
+         <div class="top-bar">
+            <a href="#page-recent">
+               <img class="back" src="images/back.png">
+            </a>
+            <h3>Profile</h3>
+            <div class="placeholder"></div>
+         </div>
+         <div class="user">
+            <div>
+               <img class="avatar" src="images/avatar.png">
+            </div>
+            <h3>Alice Chen</h3>
+            <h5 class="grey-text" style="margin-top: -10px">Since Sept 30</h5>
+         </div>
+         <div class="links">
+            <div class="link">
+               <a href="#page-list"><div class="round-shape yellow"></div></a>
+               <a class="grey-text"><h5>List</h5></a>
+            </div>
+            <div class="link">
+               <div class="round-shape blue"></div>
+               <a class="grey-text"><h5>Places</h5></a>
+            </div>
+            <div class="link">
+               <div class="round-shape red"></div>
+               <a class="grey-text"><h5>Favorite</h5></a>
+            </div>
+         </div>
+         <div class="separator">
+            <hr>   
+         </div>
+         <div class="settings">
+            <a href="#" class="grey-text"><h5>Edit Profile</h5></a>
+            <a href="#" class="grey-text"><h5>Change Password</h5></a>
+            <a href="#" class="grey-text"><h5>Log Out</h6></a>
+         </div>
+      </div>
+      <footer data-role="footer">
+         <ul>
+            <li><a href="#page-recent"><img class="home-icon" src="images/home-icon.png"></a></li>
+            <li><a href="#page-user-profile"><img class="profile-icon" src="images/profile-icon.png"></a></li>
          </ul>
       </footer>
    </section>
 
    <section data-role="page" id="page-list">
       <div data-role="main">
-         <ul>
-            <!-- li*10>a[href=#page-animal-profile]{Animal $} -->
-            <li><a href="#page-animal-profile">Animal 1</a></li>
-            <li><a href="#page-animal-profile">Animal 2</a></li>
-            <li><a href="#page-animal-profile">Animal 3</a></li>
-            <li><a href="#page-animal-profile">Animal 4</a></li>
-            <li><a href="#page-animal-profile">Animal 5</a></li>
-            <li><a href="#page-animal-profile">Animal 6</a></li>
-            <li><a href="#page-animal-profile">Animal 7</a></li>
-            <li><a href="#page-animal-profile">Animal 8</a></li>
-            <li><a href="#page-animal-profile">Animal 9</a></li>
-            <li><a href="#page-animal-profile">Animal 10</a></li>
-         </ul>
+         <div class="top-bar">
+            <a href="#page-user-profile">
+               <img class="back" src="images/back.png">
+            </a>
+            <h3>List</h3>
+            <div class="placeholder"></div>
+         </div>
+         <div class="list">
+            <a href="#page-detail" class="item">
+            </a>
+            <a href="#page-detail" class="item">
+            </a>
+            <a href="#page-detail" class="item">
+            </a>
+            <a href="#page-detail" class="item">
+            </a>
+            <a href="#page-detail" class="item">
+            </a>
+            <a href="#page-detail" class="item">
+            </a>
+            <a href="#page-detail" class="item">
+            </a>
+            <a href="#page-detail" class="item">
+            </a>
+         </div>
       </div>
-      <footer data-role="footer">
-         <ul>
-            <li><a href="#page-recent">Recent</a></li>
-            <li><a href="#page-list">List</a></li>
-            <li><a href="#page-user-profile">Profile</a></li>
-         </ul>
-      </footer>
    </section>
 
-   <section data-role="page" id="page-user-profile">
-      <div data-role="main">
-         USER!
+   <section data-role="page" id="page-detail">
+      <div class="bg">
+         <div class="top-bar">
+            <a href="#page-list">
+               <img class="back" src="images/back.png">
+            </a>
+         </div>
       </div>
-      <footer data-role="footer">
-         <ul>
-            <li><a href="#page-recent">Recent</a></li>
-            <li><a href="#page-list">List</a></li>
-            <li><a href="#page-user-profile">Profile</a></li>
-         </ul>
-      </footer>
-   </section>
-
-   <section data-role="page" id="page-animal-profile">
-      <header data-role="header">
-         <h1>Animal!</h1>
-         <ul>
-            <li><a href="#" data-rel="back">Back</a></li>
-         </ul>
-      </header>
       <div data-role="main">
-         Animal!
+         <div class="navigation">
+            <a href="#" class="blue-text subscript">9:20 am 10/10/2021</a>
+            <a href="#" class="blue-text subscript">Montegomery street</a>
+            <a href="#" class="blue-text subscript-bold">Inspiration Note</a>
+         </div>
+         <textarea>
+            
+         </textarea>
       </div>
    </section>
    
