@@ -56,7 +56,7 @@ function makeStatement($data) {
       switch($t) {
          case "users_all":
             return makeQuery($c,"SELECT * FROM `track_202190_users`",$p);
-         case "inspirations_all":
+         case "inspirations_by_user_id":
             return makeQuery($c,"SELECT * FROM `Inspirations` WHERE `user`=?",$p);
          case "check_signin":
             return makeQuery($c,"SELECT id FROM `Users` WHERE `username`=? AND `password`=md5(?)",$p);
