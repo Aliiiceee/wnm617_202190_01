@@ -25,4 +25,17 @@ $(()=>{
 		$(target).addClass("active")
 	})
 
+	.on("click","[data-deactivate]",function(e){
+		e.preventDefault();
+		let target = $(this).data("deactivate");
+		$(target).addClass("active")
+	})
+
+	.on("click","[data-toggle]",function(e){
+		e.preventDefault();
+		let target = $(this).data("toggle");
+		$(target).addClass("active")
+	})
+
+
 });

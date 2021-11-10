@@ -55,6 +55,12 @@ h5 {
    line-height: 15.19px;
 }
 
+span {
+   font-size: 12px;
+   font-weight: normal;
+   line-height: 13px;  
+}
+
 
 * {
     box-sizing: border-box;
@@ -332,10 +338,40 @@ a {
    max-width: 50%;
    height: 154px;
    width: 154px;
-   background-image: url("../images/item-bg.png");
+   padding: 10px;
+}
+.item-bg {
+   height: 100%;
+   width: 100%;   
    background-repeat: no-repeat;
-   background-size: contain;
+   background-size: cover;
    background-position: center center;
+   border-radius: 20px 20px 0 0;
+
+   display: flex;
+   flex-direction: column;
+   justify-content: flex-end;
+}
+
+.inspiration-detail {
+   height: 40%;
+   width: 100%;
+   padding: 0 5%;
+   background-color: var(--color-blue);
+   color: white;
+
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+}
+
+.inspiration-detail span {
+   display: flex;  
+   flex-direction: row;
+}
+
+.inspiration-detail span label {
+   margin-right: 5px;
 }
 
 /* Detail */
