@@ -60,6 +60,25 @@ function makeStatement($data) {
             return makeQuery($c,"SELECT * FROM `Inspirations` WHERE `user`=?",$p);
          case "check_signin":
             return makeQuery($c,"SELECT id FROM `Users` WHERE `username`=? AND `password`=md5(?)",$p);
+         case "recent_inspiration_locations":
+         return makeQuery($c,"SELECT *
+            FROM `Inspirations` a
+            JOIN (
+               SELECT lg.*
+               FROM `Locations` lg
+               WHERE lg.id = (
+                  SELECT lt.id
+                  FROM `Locations` lt
+                  WHERE lt.inspiration_id = lg.inspiration_id
+                  ORDER BY lt.date_created DESC
+                  LIMIT 1
+               )
+            ) l
+            ON a.id = l.inspiration_id
+            WHERE a.user = ?
+            ORDER BY l.inspiration_id, l.date_created DESC
+            ",$p);
+
 
 
          default: return ["error"=>"No Matched Type"];
