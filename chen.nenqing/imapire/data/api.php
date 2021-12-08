@@ -54,6 +54,17 @@ function makeStatement($data) {
       $p = $data->params;
 
       switch($t) {
+         case "insert_user":
+            $r = makeQuery($c,"SELECT id FROM `Users` WHERE `username`=? OR `email` = ?",[$p[0],$p[1]]);
+            if(count($r['result'])) return ["error"=>"Username or Email already exists"];
+
+            $r = makeQuery($c,"INSERT INTO
+               `Users`
+               (`username`, `email`, `password`, `img`, `date`)
+               VALUES
+               (?, ?, md5(?), 'http://via.placeholder.com/400/?text=USER', NOW())
+               ",$p,false);
+            return ["id" => $c->lastInsertId()];   
          case "users_all":
             return makeQuery($c,"SELECT * FROM `track_202190_users`",$p);
          case "inspirations_by_user_id":

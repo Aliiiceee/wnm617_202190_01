@@ -13,8 +13,9 @@ $(()=>{
       switch(ui.toPage[0].id) {
          case "page-recent": RecentPage(); break;
          case "page-list": ListPage(); break;
+         case "page-place": PlacePage(); break;
+         case "page-favorite": FavoritePage(); break;
          case "page-user-profile": UserProfilePage(); break;
-         case "page-animal-profile": AnimalProfilePage(); break;
       }
    })
 
@@ -23,6 +24,10 @@ $(()=>{
    .on("submit","#signin-form",function(e) {
       e.preventDefault();
       checkSigninForm();
+   })
+   .on("submit","#signup-form",function(e) {
+      e.preventDefault();
+      checkSignup();
    })
    .on("submit","#list-add-form",function(e) {
       e.preventDefault();

@@ -351,6 +351,29 @@ a {
    justify-content: flex-end;
 }
 
+/* Places */
+#page-place .top-bar {
+   position: relative;
+   z-index: 1;
+   width: 100%;
+   height: 100px;
+   padding: 30px 0;
+   display: flex;
+   flex-direction: row;
+   justify-content: space-between;
+   align-items: center;
+}
+
+/* Favorites */
+#page-favorite .top-bar {
+   width: 100%;
+   padding: 30px 0;
+   display: flex;
+   flex-direction: row;
+   justify-content: space-between;
+   align-items: center;
+}
+
 .inspiration-detail {
    height: 40%;
    width: 100%;

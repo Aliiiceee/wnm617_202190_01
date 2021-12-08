@@ -17,6 +17,7 @@
    <script src="js/app.js"></script>
    <script src="js/functions.js"></script>
    <script src="js/signin.js"></script>
+   <script src="js/form.js"></script>
    <script src="js/map.js"></script>
    <script src="js/parts.js"></script>
 
@@ -64,6 +65,10 @@
             <div class="form-control">
                <label for="signup-email" class="form-label">Email Address</label>
                <input class="form-input" type="text" id="signup-email" data-role="none" placeholder="Email">
+            </div>
+            <div class="form-control">
+               <label for="signup-username" class="form-label">Username</label>
+               <input class="form-input" type="text" id="signup-username" data-role="none" placeholder="Username">
             </div>
             <div class="form-control">
                <label for="signup-password" class="form-label">New Password</label>
@@ -125,11 +130,13 @@
                <a class="grey-text"><h5>List</h5></a>
             </div>
             <div class="link">
-               <div class="round-shape blue"></div>
+               <a href="#page-place">
+               <div class="round-shape blue"></div></a>
                <a class="grey-text"><h5>Places</h5></a>
             </div>
             <div class="link">
-               <div class="round-shape red"></div>
+               <a href="#page-favorite">
+               <div class="round-shape red"></div></a>
                <a class="grey-text"><h5>Favorite</h5></a>
             </div>
          </div>
@@ -165,6 +172,36 @@
       </div>
    </section>
 
+   <section data-role="page" id="page-place">
+      <div data-role="main">
+         <div class="top-bar">
+            <a href="#page-user-profile">
+               <img class="back" src="images/back.png">
+            </a>
+            <h3>Places</h3>
+            <div class="placeholder"></div>
+         </div>
+         <div class="map">
+            
+         </div>
+      </div>
+   </section>
+
+   <section data-role="page" id="page-favorite">
+      <div data-role="main">
+         <div class="top-bar">
+            <a href="#page-user-profile">
+               <img class="back" src="images/back.png">
+            </a>
+            <h3>Favorite</h3>
+            <div class="placeholder"></div>
+         </div>
+         <div class="list">
+            
+         </div>
+      </div>
+   </section>
+
    <section data-role="page" id="page-detail">
       <div class="bg">
          <div class="top-bar">
@@ -184,6 +221,7 @@
          </textarea>
       </div>
    </section>
+
    
 </body>
 </html>
