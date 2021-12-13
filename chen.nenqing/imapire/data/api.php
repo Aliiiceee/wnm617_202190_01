@@ -65,30 +65,37 @@ function makeStatement($data) {
                (?, ?, md5(?), 'http://via.placeholder.com/400/?text=USER', NOW())
                ",$p,false);
             return ["id" => $c->lastInsertId()];   
+         case "user_by_id":
+            return makeQuery($c,"SELECT * FROM `Users` WHERE `id`=?",$p);
          case "users_all":
-            return makeQuery($c,"SELECT * FROM `track_202190_users`",$p);
+            return makeQuery($c,"SELECT * FROM `Users` WHERE `id`=?",$p);
+         case "update_username":
+            return makeQuery($c,"UPDATE `Users` SET `username`=? WHERE `id`=?",$p);
          case "inspirations_by_user_id":
-            return makeQuery($c,"SELECT * FROM `Inspirations` WHERE `user`=?",$p);
+            return makeQuery($c,"SELECT I.image, I.date, I.note, P.name FROM `Inspirations` I, `Projects` P WHERE I.project = P.id AND I.user=?",$p);
+         case "projects_by_user_id":
+            return makeQuery($c,"SELECT * FROM `Projects` WHERE `user`=?",$p);
+         case "insert_project":
+            return makeQuery($c,"INSERT INTO `Projects` (`user`, `name`,`description`, `date`)
+               VALUES
+               (?, ?, ?, NOW())
+               ",$p);
+            $r['id'] = $c->lastInsertId();
+            return $r;
+         case "insert_location":
+            $r = makeQuery($c,"INSERT INTO
+               `Inspirations`
+               (`user`, `project`, `lat`, `lng`, `note`, `image`, `date`)
+               VALUES
+               (?, ?, ?, ?, ?, 'http://via.placeholder.com/400/?text=PHOTO', NOW())
+               ",$p,false);
+            $r['id'] = $c->lastInsertId();
+            return $r;
          case "check_signin":
             return makeQuery($c,"SELECT id FROM `Users` WHERE `username`=? AND `password`=md5(?)",$p);
          case "recent_inspiration_locations":
          return makeQuery($c,"SELECT *
-            FROM `Inspirations` a
-            JOIN (
-               SELECT lg.*
-               FROM `Locations` lg
-               WHERE lg.id = (
-                  SELECT lt.id
-                  FROM `Locations` lt
-                  WHERE lt.inspiration_id = lg.inspiration_id
-                  ORDER BY lt.date_created DESC
-                  LIMIT 1
-               )
-            ) l
-            ON a.id = l.inspiration_id
-            WHERE a.user = ?
-            ORDER BY l.inspiration_id, l.date_created DESC
-            ",$p);
+            FROM `Inspirations` WHERE user=?",$p);
 
 
 

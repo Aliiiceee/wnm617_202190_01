@@ -19,6 +19,7 @@
    <script src="js/signin.js"></script>
    <script src="js/form.js"></script>
    <script src="js/map.js"></script>
+   <script src="js/edit.js"></script>
    <script src="js/parts.js"></script>
 
    <script
@@ -94,10 +95,8 @@
          <div class="map">
             
          </div>
-         <div class="top-bar">
-            <a href="#page-signin"> 
-               <img class="logo" src="images/logo.png" style=>
-            </a>
+         <div class="floater bottom right">
+            <a href="#page-location-choose-project" class="btn-circle" data-setnavigateback="-3">&plus;</a>
          </div>
       </div>
       <footer data-role="footer">
@@ -106,6 +105,84 @@
             <li><a href="#page-user-profile"><img class="profile-icon" src="images/profile-icon.png"></a></li>
          </ul>
       </footer>
+   </section>
+
+   <section data-role="page" id="page-location-choose-project">
+      <header data-role="header">
+         <h1>Choose Project</h1>
+         <ul>
+            <li><a href="#" data-rel="back">Back</a></li>
+            <li class="flex-stretch"></li>
+            <li><a href="#page-location-set-location">Next</a></li>
+         </ul>
+      </header>
+      <div data-role="main" style="padding:1em">
+         <input type="hidden" id="location-project-choice">
+         <div>
+            <a href="#page-project-add">Start a new Project</a>
+         </div>
+         <p>Or</p>
+         <div class="form-select location-project-choice-select"></div>
+      </div>
+   </section>
+
+   <section data-role="page" id="page-location-set-location">
+      <header data-role="header">
+         <h1>Set Location</h1>
+         <ul>
+            <li><a href="#" data-rel="back">Back</a></li>
+            <li class="flex-stretch"></li>
+            <li><a href="#page-location-description">Next</a></li>
+         </ul>
+      </header>
+      <div data-role="main">
+         <input type="hidden" id="location-lat">
+         <input type="hidden" id="location-lng">
+         <div class="map"></div>
+      </div>
+   </section>
+
+   <section data-role="page" id="page-location-description">
+      <header data-role="header">
+         <h1>Description</h1>
+         <ul>
+            <li><a href="#" data-rel="back">Back</a></li>
+            <li class="flex-stretch"></li>
+            <li><a href="#" class="js-submitlocationform">Save</a></li>
+         </ul>
+      </header>
+      <div data-role="main">
+         <form action="" style="padding:1em">
+            <input type="hidden" id="location-navigateback" value="-3">
+
+            <div class="form-control">
+               <label for="location-description" class="form-label">Describe the inspiration</label>
+               <textarea id="location-description" class="form-input" data-role="none" placeholder="What inspired you?"></textarea>
+            </div>
+         </form>
+      </div>
+   </section>
+
+   <section data-role="page" id="page-project-add">
+      <header data-role="header">
+         <h1>Start Project!</h1>
+         <ul>
+            <li><a href="#" data-rel="back">Cancel</a></li>
+         </ul>
+      </header>
+      <div data-role="main">
+         <form class="fill-parent display-flex flex-vertical" id="project-add-form" data-ajax="false">
+            <div class="flex-stretch position-relative">
+               <div class="fill-parent overscroll position-absolute padding-md">
+                  
+               </div>
+            </div>
+            <div class="flex-none padding-md">
+               <button type="submit" class="form-button">Save</button>
+               <!-- <a href="#page-list" class="form-button">Save</a> -->
+            </div>
+         </form>
+      </div>
    </section>
 
    <section data-role="page" id="page-user-profile">
@@ -117,12 +194,8 @@
             <h3>Profile</h3>
             <div class="placeholder"></div>
          </div>
-         <div class="user">
-            <div>
-               <img class="avatar" src="images/avatar.png">
-            </div>
-            <h3>Alice Chen</h3>
-            <h5 class="grey-text" style="margin-top: -10px">Since Sept 30</h5>
+         <div class="user-profile">
+            
          </div>
          <div class="links">
             <div class="link">
@@ -144,7 +217,52 @@
             <hr>   
          </div>
          <div class="settings">
-            <a href="#" class="grey-text"><h5>Edit Profile</h5></a>
+            <a href="#page-edit-profile" class="grey-text"><h5>Edit Username</h5></a>
+            <a href="#" class="grey-text"><h5>Change Password</h5></a>
+            <a href="#page-signin" class="grey-text"><h5>Log Out</h6></a>
+         </div>
+      </div>
+      <footer data-role="footer">
+         <ul>
+            <li><a href="#page-recent"><img class="home-icon" src="images/home-icon.png"></a></li>
+            <li><a href="#page-user-profile"><img class="profile-icon" src="images/profile-icon.png"></a></li>
+         </ul>
+      </footer>
+   </section>
+
+   <section data-role="page" id="page-edit-profile">
+      <div data-role="main" class="overscroll">
+         <div class="top-bar">
+            <a href="#page-user-profile">
+               <img class="back" src="images/back.png">
+            </a>
+            <h3>Profile</h3>
+            <div class="placeholder"></div>
+         </div>
+         <div class="user-profile">
+            
+         </div>
+         <div class="links">
+            <div class="link">
+               <a href="#"><div class="round-shape yellow"></div></a>
+               <a class="grey-text"><h5>List</h5></a>
+            </div>
+            <div class="link">
+               <a href="#">
+               <div class="round-shape blue"></div></a>
+               <a class="grey-text"><h5>Places</h5></a>
+            </div>
+            <div class="link">
+               <a href="#">
+               <div class="round-shape red"></div></a>
+               <a class="grey-text"><h5>Favorite</h5></a>
+            </div>
+         </div>
+         <div class="separator">
+            <hr>   
+         </div>
+         <div class="settings">
+            <a href="#" class="grey-text"><h5>Edit Username</h5></a>
             <a href="#" class="grey-text"><h5>Change Password</h5></a>
             <a href="#" class="grey-text"><h5>Log Out</h6></a>
          </div>

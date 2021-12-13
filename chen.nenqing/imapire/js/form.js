@@ -1,30 +1,26 @@
 
-const animalAddForm = async () => {
-   let name = $("#animal-add-name").val();
-   let type = $("#animal-add-type").val();
-   let breed = $("#animal-add-breed").val();
-   let description = $("#animal-add-description").val();
+const projectAddForm = async () => {
+   let name = $("#project-add-name").val();
+   let description = $("#project-add-description").val();
 
    let r = await query({
-      type:'insert_animal',
-      params:[sessionStorage.userId,name,type,breed,description]
+      type:'insert_project',
+      params:[sessionStorage.userId,name,description]
    });
 
-   if(r.error) throw(r.error);
-
-   sessionStorage.animalId = r.id;
+   sessionStorage.projectId = r.id;
    history.go(-1);
 }
 
-const animalEditForm = async () => {
-   let name = $("#animal-edit-name").val();
-   let type = $("#animal-edit-type").val();
-   let breed = $("#animal-edit-breed").val();
-   let description = $("#animal-edit-description").val();
+const inspirationEditForm = async () => {
+   let name = $("#inspiration-edit-name").val();
+   let type = $("#inspiration-edit-type").val();
+   let breed = $("#inspiration-edit-breed").val();
+   let description = $("#inspiration-edit-description").val();
 
    let r = await query({
-      type:'update_animal',
-      params:[name,type,breed,description,sessionStorage.animalId]
+      type:'update_inspiration',
+      params:[name,type,breed,description,sessionStorage.inspirationId]
    });
 
    if(r.error) throw(r.error);
@@ -99,14 +95,16 @@ const userEditPasswordForm = async () => {
 }
 
 const locationAddForm = async () => {
-   let animal = $("#location-animal-choice").val();
+   let project = $("#location-project-choice").val();
    let lat = $("#location-lat").val();
    let lng = $("#location-lng").val();
    let description = $("#location-description").val();
+   alert(sessionStorage.userId);
+   alert(project);
 
    let r = await query({
       type:'insert_location',
-      params:[animal,lat,lng,description]
+      params:[sessionStorage.userId, project,lat,lng,description]
    });
 
    if(r.error) throw(r.error);
@@ -117,22 +115,22 @@ const locationAddForm = async () => {
 
 
 const checkSearchForm = async (s) => {
-   let animals = await query({
-      type:'search_animals',
+   let inspirations = await query({
+      type:'search_inspirations',
       params:[s,sessionStorage.userId]
    });
 
-   if(animals.error) throw(animals.error);
+   if(inspirations.error) throw(inspirations.error);
 
-   makeAnimalListSet(animals.result);
+   makeInspirationListSet(inspirations.result);
 }
 const checkFilter = async (f,v) => {
-   let animals = await query({
-      type:'filter_animals',
+   let inspirations = await query({
+      type:'filter_inspirations',
       params:[f,v,sessionStorage.userId]
    });
 
-   if(animals.error) throw(animals.error);
+   if(inspirations.error) throw(inspirations.error);
 
-   makeAnimalListSet(animals.result);
+   makeInspirationListSet(inspirations.result);
 }

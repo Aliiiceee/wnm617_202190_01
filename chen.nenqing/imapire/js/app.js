@@ -16,6 +16,10 @@ $(()=>{
          case "page-place": PlacePage(); break;
          case "page-favorite": FavoritePage(); break;
          case "page-user-profile": UserProfilePage(); break;
+         case "page-edit-profile": EditProfilePage(); break;
+         case "page-project-add": ProjectAddPage(); break;
+         case "page-location-choose-project": LocationChooseProjectPage(); break;
+         case "page-location-set-location": LocationSetLocationPage(); break;
       }
    })
 
@@ -32,6 +36,14 @@ $(()=>{
    .on("submit","#list-add-form",function(e) {
       e.preventDefault();
    })
+   .on("submit", "#project-add-form",function(e) {
+      projectAddForm();
+      e.preventDefault(); 
+   })
+   .on("click",".js-submitlocationform",function(e){
+      e.preventDefault();
+      locationAddForm();
+   })
 
 
    // ANCHOR CLICKS
@@ -40,10 +52,10 @@ $(()=>{
       sessionStorage.removeItem("userId");
       checkUserId();
    })
-   .on("click",".animal-jump",function(e) {
+   .on("click",".inspiration-jump",function(e) {
       if(!$(this).data("id")) throw("No ID on element");
-      sessionStorage.animalId = $(this).data("id");
-      $.mobile.navigate("#page-animal-profile");
+      sessionStorage.inspirationId = $(this).data("id");
+      $.mobile.navigate("#page-inspiration-profile");
    })
 
 
