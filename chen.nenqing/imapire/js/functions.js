@@ -1,9 +1,20 @@
+
 const query = (options) => {
    // Fetch is a promise
    return fetch('data/api.php',{
       method:'POST',
       body:JSON.stringify(options),
       headers:{'Content-Type':'application/json'}
+   }).then(d=>d.json());
+}
+
+const checkUpload = (file) => {
+   let fd = new FormData();
+   fd.append("image",file);
+
+   return fetch('data/api.php',{
+      method:'POST',
+      body:fd,
    }).then(d=>d.json());
 }
 

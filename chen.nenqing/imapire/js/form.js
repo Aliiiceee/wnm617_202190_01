@@ -14,16 +14,12 @@ const projectAddForm = async () => {
 
 const inspirationEditForm = async () => {
    let name = $("#inspiration-edit-name").val();
-   let type = $("#inspiration-edit-type").val();
-   let breed = $("#inspiration-edit-breed").val();
    let description = $("#inspiration-edit-description").val();
 
    let r = await query({
       type:'update_inspiration',
-      params:[name,type,breed,description,sessionStorage.inspirationId]
+      params:[name,description,sessionStorage.inspirationId]
    });
-
-   if(r.error) throw(r.error);
 
    history.go(-1);
 }
@@ -65,15 +61,12 @@ const checkSignup2 = async () => {
 
 const userEditForm = async () => {
    let username = $("#user-edit-username").val();
-   let name = $("#user-edit-name").val();
    let email = $("#user-edit-email").val();
 
    let r = await query({
       type:'update_user',
-      params:[username,name,email,sessionStorage.userId]
+      params:[username,email,sessionStorage.userId]
    });
-
-   if(r.error) throw(r.error);
 
    history.go(-1);
 }
@@ -89,22 +82,20 @@ const userEditPasswordForm = async () => {
       params:[password,sessionStorage.userId]
    });
 
-   if(r.error) throw(r.error);
-
    history.go(-1);
 }
 
 const locationAddForm = async () => {
    let project = $("#location-project-choice").val();
+   console.log(project);
    let lat = $("#location-lat").val();
    let lng = $("#location-lng").val();
+   let name = $("#inspiration-name").val();
    let description = $("#location-description").val();
-   alert(sessionStorage.userId);
-   alert(project);
 
    let r = await query({
       type:'insert_location',
-      params:[sessionStorage.userId, project,lat,lng,description]
+      params:[sessionStorage.userId, project,name,lat,lng,description]
    });
 
    if(r.error) throw(r.error);
@@ -124,13 +115,37 @@ const checkSearchForm = async (s) => {
 
    makeInspirationListSet(inspirations.result);
 }
-const checkFilter = async (f,v) => {
+const checkFilter = async (v) => {
+   console.log(v);
+
    let inspirations = await query({
       type:'filter_inspirations',
-      params:[f,v,sessionStorage.userId]
+      params:[v,sessionStorage.userId]
    });
 
    if(inspirations.error) throw(inspirations.error);
 
    makeInspirationListSet(inspirations.result);
+
+   let arr = inspirations.result.reduce((r,o)=>{
+      o.icon = o.image;
+      if(o.lat && o.lng) r.push(o);
+      return r;
+   },[]);
+
+   makeInspirationMapSet(arr);
+}
+
+const addFavorite = async () => {
+   let result = await query({
+      type:'add_favorite',
+      params:[sessionStorage.inspirationId]
+   });
+}
+
+const removeFavorite = async () => {
+   let result = await query({
+      type:'remove_favorite',
+      params:[sessionStorage.inspirationId]
+   });
 }

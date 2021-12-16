@@ -17,14 +17,12 @@ const ListPage = async() => {
       return;
    }
 
-   console.log(result,error);
-
-   $("#page-list .list").html(makeInspirationList(result));
+   $("#page-list .list").html(makeInspirationListSet(result));
 }
 
 const PlacePage = async() => {
    let result = await resultQuery({
-      type:'recent_inspiration_locations',
+      type:'inspirations_by_user_id',
       params:[sessionStorage.userId]
    });
 
@@ -36,33 +34,12 @@ const PlacePage = async() => {
 
    console.log(inspirations);
 
-   let mapEl = await makeMap("#page-place .map");
-   makeMarkers(mapEl,inspirations);
-
-   let {infoWindow,map,markers} = mapEl.data();
-   markers.forEach((o,i)=>{
-      o.addListener("click",function(){
-
-         /* Simple Example */
-         // sessionStorage.inspirationId = inspirations[i].inspiration_id;
-         // $.mobile.navigate("#page-inspiration-profile")
-
-         /* InfoWindow Example */
-         infoWindow.open(map,o);
-         infoWindow.setContent(makeInspirationPopup(inspirations[i]))
-
-         /* Activate Example */
-         // $("#recent-drawer")
-         //    .addClass("active")
-         //    .find(".modal-body")
-         //    .html(makeInspirationPopup(inspirations[i]))
-      })
-   });
+   makeInspirationMapSet(inspirations);
 }
 
 const FavoritePage = async() => {
    // destructure
-   let {result,error} = await query({type:'inspirations_by_user_id',params:[sessionStorage.userId]});
+   let {result,error} = await query({type:'favorite_inspirations_by_user_id',params:[sessionStorage.userId]});
 
    if(error) {
       console.log(error);
@@ -74,7 +51,7 @@ const FavoritePage = async() => {
 
 const RecentPage = async() => {
    let result = await resultQuery({
-      type:'recent_inspiration_locations',
+      type:'inspirations_by_user_id',
       params:[sessionStorage.userId]
    });
 
@@ -108,8 +85,6 @@ const RecentPage = async() => {
    });
 }
 
-
-
 const UserProfilePage = async() => {
    let {result,error} = await query({type:'user_by_id',params:[sessionStorage.userId]});
    if(error) {
@@ -120,35 +95,42 @@ const UserProfilePage = async() => {
    $("#page-user-profile [data-role='main'] .user-profile").html(makeUserProfile(user));
 }
 
+const UserEditPage = async() => {
+   let user_result = await resultQuery({
+      type:'user_by_id',
+      params:[sessionStorage.userId]
+   });
 
-const EditProfilePage = async() => {
-   let {result,error} = await query({type:'user_by_id',params:[sessionStorage.userId]});
-   if(error) {
-      console.log(error);
-      return;
-   }
-   let [user] = result;
-   $("#page-edit-profile [data-role='main'] .user-profile").html(makeEditProfile(user));
+   let [user] = user_result;
+   
+   $("#user-edit-form .fill-parent").html(
+      makeUserFormInputs(user,"user-edit")
+   );
 }
 
-
-const InspirationProfilePage = async() => {
+const InspirationDetailPage = async() => {
    let inspiration_result = await resultQuery({
       type:'inspiration_by_id',
       params:[sessionStorage.inspirationId]
    });
 
-   let [inspiration] = inspiration_result;
-   $(".inspiration-profile-top>img").attr("src",inspiration.img);
-   $(".inspiration-profile-bottom .description").html(makeInspirationProfile(inspiration));
+   $(".inspiration-detail-top").html(makeInspirationDetail(inspiration_result[0]));
 
-   let locations_result = await resultQuery({
-      type:'locations_by_inspiration_id',
+   let location_result = await resultQuery({
+      type:'location_by_inspiration_id',
       params:[sessionStorage.inspirationId]
    });
-   let mapEl = await makeMap("#page-inspiration-profile .map");
-   makeMarkers(mapEl,locations_result);
+
+   let location = location_result.reduce((r,o)=>{
+      o.icon = o.image;
+      if(o.lat && o.lng) r.push(o);
+      return r;
+   },[]);
+
+   let mapEl = await makeMap(".inspiration-detail-bottom .map");
+   makeMarkers(mapEl, location_result);
 }
+
 const InspirationEditPage = async() => {
    let inspiration_result = await resultQuery({
       type:'inspiration_by_id',
@@ -161,6 +143,7 @@ const InspirationEditPage = async() => {
       makeInspirationFormInputs(inspiration,"inspiration-edit")
    );
 }
+
 const ProjectAddPage = async() => {
    $("#project-add-form .fill-parent").html(
       makeProjectFormInputs({
